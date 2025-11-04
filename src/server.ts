@@ -31,7 +31,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/api/candidates', candidateRoutes);
+app.use('/api/hr', candidateRoutes);
 app.use('/api/resume', resumeRoutes);
 
 // Health check

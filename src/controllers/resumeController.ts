@@ -30,8 +30,6 @@ export const parseResume = async (req: Request, res: Response) => {
 
         // Get LLM evaluation with specific job role
         const evaluation = await evaluateCandidateWithLLM(cleanData, jobDescription);
-
-        debugger
         // Save to database
         const candidate = await Candidate.create({
             firstName: cleanData.candidateName.firstName,

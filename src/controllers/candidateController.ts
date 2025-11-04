@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Candidate } from '../models/Candidate';
+const jwt = require('jsonwebtoken');
 
 export const getAllCandidates = async (req: Request, res: Response) => {
     try {
@@ -48,5 +49,21 @@ export const updateCandidateStage = async (req: Request, res: Response) => {
     } catch (error) {
         console.error("Error updating candidate:", error);
         res.status(500).json({ error: "Failed to update candidate" });
+    }
+};
+
+export const hrLogin = async (req: Request, res: Response) => {
+    const { password } = req.body;
+    if (password?.toString().trim() === process.env.HR_PASSWORD?.toString().trim()) {
+        // Generate JWT token
+        const token = await jwt.sign(
+            { role: 'hr', timestamp: Date.now() },
+            process.env.JWT_SECRET, // Store this in your .env
+            { expiresIn: '24h' } // Token expires in 24 
+        );
+
+        res.json({ token });
+    } else {
+        res.status(401).json({ error: 'Invalid password' });
     }
 };

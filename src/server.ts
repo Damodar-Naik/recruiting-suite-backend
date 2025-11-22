@@ -38,7 +38,7 @@ app.use('/api/resume', resumeRoutes);
 app.get('/health', (req, res) => {
     res.status(200).json({
         status: 'OK',
-        service: 'Recruitment Backend API',
+        service: 'Recruitment Backend API working on aws',
         timestamp: new Date().toISOString()
     });
 });

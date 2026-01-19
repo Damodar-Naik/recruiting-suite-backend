@@ -35,7 +35,7 @@ export async function evaluateCandidateWithLLM(
         return JSON.parse(response.text) as CandidateEvaluation;
     } catch (error) {
         console.error("Gemini API error:", error);
-        throw new Error("Failed to evaluate candidate with Gemini");
+        throw new Error("LLM api limit has been hit. Please try again later.");
     }
 }
 

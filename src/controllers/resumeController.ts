@@ -55,6 +55,6 @@ export const parseResume = async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error("Error parsing resume:", error);
-        res.status(500).json({ error: error instanceof Error ? error.message : "Internal Server Error" });
+        res.status(500).json({ error: "LLM api limit has been hit. Please try again later." });
     }
 };
